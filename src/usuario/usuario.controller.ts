@@ -8,7 +8,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
-import { Usuario } from './usuario.entity';
+import { Usuario } from './entity/usuario.entity';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 
 @Controller('usuario')
