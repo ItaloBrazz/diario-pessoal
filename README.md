@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">API REST para gerenciamento de usuários de um diário pessoal, desenvolvida com <a href="http://nodejs.org" target="_blank">Node.js</a> e <a href="http://nestjs.com" target="_blank">NestJS</a>.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -18,81 +18,128 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## 📖 Sobre o Projeto
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+API REST desenvolvida com NestJS para gerenciamento de usuários de um diário pessoal. A aplicação oferece funcionalidades de cadastro e consulta de usuários com segurança através de hash de senhas e validação de dados.
 
-## Project setup
+## 🚀 Tecnologias
+
+- **NestJS** - Framework Node.js progressivo
+- **TypeORM** - ORM para banco de dados
+- **MySQL** - Sistema de gerenciamento de banco de dados
+- **bcrypt** - Biblioteca para hash de senhas
+- **class-validator** - Validação de dados
+- **TypeScript** - Superset do JavaScript com tipagem estática
+
+## 📋 Pré-requisitos
+
+- Node.js (v18 ou superior)
+- MySQL instalado e rodando
+- npm ou yarn
+
+## ⚙️ Instalação
 
 ```bash
 $ npm install
 ```
 
-## Compile and run the project
+## 🔧 Configuração
 
-```bash
-# development
-$ npm run start
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```env
+MYSQL_DB_HOST=localhost
+MYQSL_DB_PORT=3306
+MYSQL_DB_USERNAME=seu_usuario
+MYSQL_DB_PASSWORD=sua_senha
+MYSQL_DB_DATABASE=nome_do_banco
+PORT=3000
 ```
 
-## Run tests
+## 🏃 Executando a aplicação
 
 ```bash
-# unit tests
+# Modo desenvolvimento (com hot-reload)
+$ npm run start:dev
+
+# Modo produção
+$ npm run start:prod
+
+# Modo normal
+$ npm run start
+```
+
+A aplicação estará disponível em `http://localhost:3000` (ou na porta definida na variável `PORT`).
+
+## 📡 Endpoints da API
+
+### Cadastrar Usuário
+- **POST** `/user/cadastro`
+- **Body:**
+  ```json
+  {
+    "email": "usuario@exemplo.com",
+    "nome": "João Silva",
+    "senha": "senha123"
+  }
+  ```
+- **Resposta (201):**
+  ```json
+  {
+    "id": 1,
+    "email": "usuario@exemplo.com",
+    "nome": "João Silva"
+  }
+  ```
+
+### Buscar Usuário por ID
+- **GET** `/user/:id`
+- **Resposta (200):**
+  ```json
+  {
+    "id": 1,
+    "email": "usuario@exemplo.com",
+    "nome": "João Silva"
+  }
+  ```
+
+## 🔒 Segurança
+
+- ✅ Senhas são automaticamente convertidas em hash usando bcrypt antes de serem salvas
+- ✅ A senha nunca é retornada nas respostas da API
+- ✅ Validação automática de dados de entrada
+- ✅ CORS habilitado para requisições cross-origin
+
+## ✅ Validações
+
+- **Email:** Deve ser um email válido e único
+- **Nome:** Mínimo de 2 caracteres
+- **Senha:** Mínimo de 6 caracteres
+
+## 📚 Documentação
+
+Para mais detalhes sobre como usar a API com exemplos práticos, consulte o arquivo [POSTMAN_GUIDE.md](./POSTMAN_GUIDE.md).
+
+## 🧪 Testes
+
+```bash
+# Testes unitários
 $ npm run test
 
-# e2e tests
+# Testes e2e
 $ npm run test:e2e
 
-# test coverage
+# Cobertura de testes
 $ npm run test:cov
 ```
 
-## Deployment
+## 📝 Scripts Disponíveis
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `npm run build` - Compila o projeto TypeScript
+- `npm run format` - Formata o código com Prettier
+- `npm run start` - Inicia a aplicação
+- `npm run start:dev` - Inicia em modo desenvolvimento (watch mode)
+- `npm run start:debug` - Inicia em modo debug
+- `npm run start:prod` - Inicia em modo produção
+- `npm run lint` - Executa o linter e corrige problemas
