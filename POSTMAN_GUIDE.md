@@ -19,7 +19,7 @@
 ### Configuração da Requisição
 
 **Método:** `POST`  
-**URL:** `http://localhost:3000/usuario`
+**URL:** `http://localhost:3000/user/cadastro`
 
 **Headers:**
 - `Content-Type: application/json`
@@ -30,13 +30,13 @@
   "email": "usuario@exemplo.com",
   "nome": "João Silva",
   "senha": "senha123"
-}
+} 
 ```
 
 ### Exemplo Completo:
 
 1. Selecione o método **POST**
-2. Digite a URL: `http://localhost:3000/usuario`
+2. Digite a URL: `http://localhost:3000/user/cadastro`
 3. Vá na aba **Headers** e adicione:
    - Key: `Content-Type`
    - Value: `application/json`
@@ -80,14 +80,14 @@
 ### Configuração da Requisição
 
 **Método:** `GET`  
-**URL:** `http://localhost:3000/usuario/1`
+**URL:** `http://localhost:3000/user/1`
 
 *(Substitua `1` pelo ID do usuário que você quer buscar)*
 
 ### Exemplo Completo:
 
 1. Selecione o método **GET**
-2. Digite a URL: `http://localhost:3000/usuario/1`
+2. Digite a URL: `http://localhost:3000/user/1`
 3. Clique em **Send**
 
 ### Resposta Esperada (Status 200):
@@ -110,7 +110,7 @@ null
 
 ### Criar Primeiro Usuário:
 ```json
-POST http://localhost:3000/usuario
+POST http://localhost:3000/user/cadastro
 {
   "email": "maria@exemplo.com",
   "nome": "Maria Santos",
@@ -120,7 +120,7 @@ POST http://localhost:3000/usuario
 
 ### Criar Segundo Usuário:
 ```json
-POST http://localhost:3000/usuario
+POST http://localhost:3000/user/cadastro
 {
   "email": "pedro@exemplo.com",
   "nome": "Pedro Oliveira",
@@ -130,8 +130,8 @@ POST http://localhost:3000/usuario
 
 ### Buscar Usuário Criado:
 ```
-GET http://localhost:3000/usuario/1
-GET http://localhost:3000/usuario/2
+GET http://localhost:3000/user/1
+GET http://localhost:3000/user/2
 ```
 
 ---
@@ -147,9 +147,10 @@ GET http://localhost:3000/usuario/2
 
 ## Troubleshooting
 
-### Erro: "Cannot POST /usuario"
+### Erro: "Cannot POST /user/cadastro"
 - Verifique se o servidor está rodando (`npm run start:dev`)
 - Confirme que a porta está correta (padrão: 3000)
+- Verifique se a rota está correta: `/user/cadastro`
 
 ### Erro: "Connection refused"
 - Servidor não está rodando

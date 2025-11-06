@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
-import { UsuarioModule } from './usuario/usuario.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,7 +23,7 @@ import { UsuarioModule } from './usuario/usuario.module';
       }),
       inject: [ConfigService],
     }),
-    UsuarioModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
